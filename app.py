@@ -48,7 +48,10 @@ def tutor_selection_done():
 # contains and handle form of tutor booking
 @app.route('/booking/<int:id_tutor>/<day_name>/<booking_time>/')
 def booking_form(id_tutor, day_name, booking_time):
-    return render_template('booking.html', id_tutor=id_tutor, day_name=day_name, booking_time=booking_time)
+    return render_template('booking.html',
+                           id_tutor=id_tutor,
+                           day_name=day_name,
+                           booking_time=booking_time)
 
 
 # shows us booking done status
