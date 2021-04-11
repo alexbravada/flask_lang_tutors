@@ -1,3 +1,7 @@
+import random, pprint
+
+import json
+
 import flask
 
 from flask import Flask, render_template, request
@@ -6,6 +10,32 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 app.debug = True
 
+
+with open('teachers.json', 'r', encoding='utf-8') as f:
+    teachers = json.load(f)
+    id_teacher_list = [i for i in teachers if i['id'] == 4][0]
+    print(id_teacher_list['id'])
+
+
+with open('dayname.json', 'r', encoding='utf-8') as f:
+    dayname = json.load(f)
+    eng_dayname = list(dayname.keys())
+    print(eng_dayname)
+
+
+p = "12:00"
+p = p.partition(':')[0]
+print(p)
+for s in id_teacher_list['free'].keys():
+    print(s)
+
+time = "02:00"
+if time[0] == '0':
+    time = time[1]
+    print(time)
+else:
+    time = time[0] + time[1]
+    print(time)
 
 # main page
 @app.route('/')
@@ -28,9 +58,18 @@ def goal_page(goal):
 
 # personal tutor page
 @app.route('/profiles/<int:id_tutor>/')
+#for tutor_dict in
 def tutor_page(id_tutor):
+    with open('teachers.json', 'r', encoding='utf-8') as f:
+        teachers = json.load(f)
+        id_teacher_list = [i for i in teachers if i['id'] == id_tutor][0]
+        print(id_teacher_list['free'].keys())
+
     return render_template('profile.html',
-                           id_tutor=id_tutor)
+                           id_tutor=id_tutor,
+                           id_teacher_list=id_teacher_list,
+                           dayname=dayname,
+                           eng_dayname=eng_dayname)
 
 
 # tutor selection request page
