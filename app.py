@@ -6,6 +6,10 @@ import flask
 
 from flask import Flask, render_template, request
 
+from flask_wtf import FlaskForm
+
+from wtforms import StringField
+
 
 app = Flask(__name__)
 app.debug = True
@@ -85,18 +89,36 @@ def tutor_selection_done():
 
 
 # contains and handle form of tutor booking
-@app.route('/booking/<int:id_tutor>/<day_name>/<booking_time>/')
-def booking_form(id_tutor, day_name, booking_time):
+@app.route('/booking/<int:id_tutor>/<day_name_link>/<booking_time>/', methods=["GET", "POST"])
+def booking_form(id_tutor, day_name_link, booking_time):
+    teacher_name = [i for i in teachers if i['id'] == id_tutor][0]['name']
+    ru_dayname = dayname[day_name_link]
+
     return render_template('booking.html',
                            id_tutor=id_tutor,
-                           day_name=day_name,
+                           day_name_link=day_name_link,
+                           ru_dayname=ru_dayname,
+                           teacher_name=teacher_name,
                            booking_time=booking_time)
 
 
 # shows us booking done status
-@app.route('/booking_done/')
+@app.route('/booking_done/', methods=["GET", "POST"])
 def booking_done_pg():
-    return render_template('booking_done.html')
+    cWeekday = request.form["clientWeekday"]
+    cTime = request.form["clientTime"]
+    cTeacher = request.form["clientTeacher"]
+    clientName = request.form["clientName"]
+    clientPhone = request.form["clientPhone"]
+    print(f'weekday is {cWeekday}\n  time {cTime} \n teacher id is {cTeacher}\n  '
+          f'my name is {clientName}\n  tel is {clientPhone}')
+    return render_template('booking_done.html',
+                           dayname=dayname,
+                           cWeekday=cWeekday,
+                           cTime=cTime,
+                           cTeacher=cTeacher,
+                           clientName=clientName,
+                           clientPhone=clientPhone)
 
 
 app.run(debug=True)

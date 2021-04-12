@@ -26,32 +26,32 @@
 
               <h6 class="mt-4">Вторник</h6>
               {% for time, bool in id_teacher_list['free']['tue'].items() %} {% if bool == True %}
-              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[0] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
+              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[1] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
                 {{ time }} свободно</a>{% endif %}{% endfor %}{% if True not in id_teacher_list['free']['tue'].values() %}<p>Нет свободных уроков</p>{% endif %}
 
               <h6 class="mt-4">Среда</h6>
               {% for time, bool in id_teacher_list['free']['wed'].items() %} {% if bool == True %}
-              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[0] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
+              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[2] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
                 {{ time }} свободно</a>{% endif %}{% endfor %}{% if True not in id_teacher_list['free']['wed'].values() %}<p>Нет свободных уроков</p>{% endif %}
 
               <h6 class="mt-4">Четверг</h6>
               {% for time, bool in id_teacher_list['free']['thu'].items() %} {% if bool == True %}
-              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[0] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
+              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[3] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
                 {{ time }} свободно</a>{% endif %}{% endfor %}{% if True not in id_teacher_list['free']['thu'].values() %}<p>Нет свободных уроков</p>{% endif %}
 
               <h6 class="mt-4">Пятница</h6>
               {% for time, bool in id_teacher_list['free']['fri'].items() %} {% if bool == True %}
-              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[0] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
+              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[4] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
                 {{ time }} свободно</a>{% endif %}{% endfor %}{% if True not in id_teacher_list['free']['fri'].values() %}<p>Нет свободных уроков</p>{% endif %}
 
               <h6 class="mt-4">Суббота</h6>
               {% for time, bool in id_teacher_list['free']['sat'].items() %} {% if bool == True %}
-              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[0] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
+              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[5] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
                 {{ time }} свободно</a>{% endif %}{% endfor %}{% if True not in id_teacher_list['free']['sat'].values() %}<p>Нет свободных уроков</p>{% endif %}
 
               <h6 class="mt-4">Воскресенье</h6>
               {% for time, bool in id_teacher_list['free']['sun'].items() %} {% if bool == True %}
-              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[0] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
+              <a href="/booking/{{ id_tutor }}/{{ eng_dayname[6] }}/{{ time.partition(':')[0] }}/" class="btn btn-outline-success mr-2">
                 {{ time }} свободно</a>{% endif %}{% endfor %}{% if True not in id_teacher_list['free']['sun'].values() %}<p>Нет свободных уроков</p>{% endif %}
 
             </section>
