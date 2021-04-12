@@ -71,10 +71,19 @@ def tutor_selection_request():
 # tutor selection DONE
 @app.route('/request_done/', methods=["GET", "POST"])
 def tutor_selection_done():
-    # goalz = request.form('goal')
-    # ddd = request.form('fPhone')
-    # print(goalz)
-    return render_template('request_done.html')
+    goals = request.form['goal']
+    week_time = request.form['time']
+    fname = request.form['fname']
+    fphone = request.form['fphone']
+    print(goals)
+    print(week_time)
+    print(type(fname))
+    print(fphone)
+    return render_template('request_done.html',
+                           goals=goals,
+                           week_time=week_time,
+                           fname=fname,
+                           fphone=fphone)
 
 
 # contains and handle form of tutor booking

@@ -13,26 +13,26 @@
             <div class="col">
               <p>Какая цель занятий?</p>
               <div class="form-check ">
-                <input type="radio" class="form-check-input" name="goal" value={{request_file["travel"]}} id="goal1" checked>
+                <input type="radio" class="form-check-input" name="goal" value="travel" id="goal1" checked>
                 <label class="form-check-label" for="goal1">
                   {{ request_file["travel"] }}
                 </label> 
               </div>
               <div class="form-check ">
-                <input type="radio" class="form-check-input" name="goal" value={{request_file["study"]}} id="goal2">
+                <input type="radio" class="form-check-input" name="goal" value="study" id="goal2">
                 <label class="form-check-label" for="goal2">
                   {{ request_file["study"] }}
                 </label>
               </div>
               <div class="form-check ">
-                <input type="radio" class="form-check-input" name="goal" value={{request_file["work"]}} id="goal3">
-                <label class="form-check-label" for="goal2">
+                <input type="radio" class="form-check-input" name="goal" value="work" id="goal3">
+                <label class="form-check-label" for="goal3">
                   {{ request_file["work"] }}
                 </label>
               </div>
               <div class="form-check ">
-                <input type="radio" class="form-check-input" name="goal" value={{request_file["relocate"]}} id="goal4">
-                <label class="form-check-label" for="goal2">
+                <input type="radio" class="form-check-input" name="goal" value="relocate" id="goal4">
+                <label class="form-check-label" for="goal4">
                   {{ request_file["relocate"] }}
                 </label>
               </div>
@@ -69,9 +69,9 @@
         <hr>
         <div class="card-body mx-3">
           <label class="mb-1 mt-2"  >Вас зовут</label>
-          <input class="form-control" for="fName" type="text" placeholder="">
+          <input class="form-control" type="text" name="fname" id="fname" placeholder="">
           <label class="mb-1 mt-2">Ваш телефон</label>
-          <input class="form-control" for="fPhone"type="text" placeholder="">
+          <input class="form-control" type="text" name="fphone" id="fphone" placeholder="">
           <input type="submit" class="btn btn-primary mt-4 mb-2" value="Найдите мне преподавателя">
         </div>
       </form>
