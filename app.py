@@ -17,29 +17,12 @@ app.debug = True
 
 with open('teachers.json', 'r', encoding='utf-8') as f:
     teachers = json.load(f)
-    id_teacher_list = [i for i in teachers if i['id'] == 4][0]
-    print(id_teacher_list['id'])
 
 
 with open('dayname.json', 'r', encoding='utf-8') as f:
     dayname = json.load(f)
     eng_dayname = list(dayname.keys())
-    print(eng_dayname)
 
-
-p = "12:00"
-p = p.partition(':')[0]
-print(p)
-for s in id_teacher_list['free'].keys():
-    print(s)
-
-time = "02:00"
-if time[0] == '0':
-    time = time[1]
-    print(time)
-else:
-    time = time[0] + time[1]
-    print(time)
 
 # main page
 @app.route('/')
@@ -110,6 +93,20 @@ def booking_done_pg():
     cTeacher = request.form["clientTeacher"]
     clientName = request.form["clientName"]
     clientPhone = request.form["clientPhone"]
+
+
+    dict_from_booking = {"clientName": clientName,
+                         "clientPhone": clientPhone,
+                         "cTeacher": cTeacher,
+                         "cWeekday": cWeekday,
+                         "cTime": cTime}
+
+    with open('booking.json', 'r', encoding='utf-8') as f:
+        booking_list = json.load(f)
+        booking_list.append(dict_from_booking)
+    with open('booking.json', 'w', encoding='utf-8') as f:
+        json.dump(booking_list, f, indent=4, ensure_ascii=False)
+
     print(f'weekday is {cWeekday}\n  time {cTime} \n teacher id is {cTeacher}\n  '
           f'my name is {clientName}\n  tel is {clientPhone}')
     return render_template('booking_done.html',
