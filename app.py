@@ -60,14 +60,21 @@ def tutor_page(id_tutor):
 
 
 # tutor selection request page
-@app.route('/request/')
+@app.route('/request/', methods=["GET", "POST"])
 def tutor_selection_request():
-    return render_template('request.html')
+    with open('goals.json', 'r', encoding='utf-8') as f:
+        request_file = json.load(f)
+    return render_template('request.html',
+                           request_file=request_file,
+                           )
 
 
 # tutor selection DONE
-@app.route('/request_done/')
+@app.route('/request_done/', methods=["GET", "POST"])
 def tutor_selection_done():
+    # goalz = request.form('goal')
+    # ddd = request.form('fPhone')
+    # print(goalz)
     return render_template('request_done.html')
 
 
@@ -85,7 +92,7 @@ def booking_form(id_tutor, day_name_link, booking_time):
                            booking_time=booking_time)
 
 
-# shows us booking done status
+# shows us booking done status and writes post-data in JSON file
 @app.route('/booking_done/', methods=["GET", "POST"])
 def booking_done_pg():
     cWeekday = request.form["clientWeekday"]
