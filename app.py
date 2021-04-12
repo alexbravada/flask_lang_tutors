@@ -125,4 +125,6 @@ def booking_done_pg():
                            clientPhone=clientPhone)
 
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run()
+
