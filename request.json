@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "clientName": "Ann",
+        "clientPhone": "888 999 0000 12313",
+        "clientGoal": "relocate",
+        "clientWeektime": "7-10"
+    },
+    {
+        "clientName": "Henry",
+        "clientPhone": "+4994443332333",
+        "clientGoal": "relocate",
+        "clientWeektime": "3-5"
+    }
+]

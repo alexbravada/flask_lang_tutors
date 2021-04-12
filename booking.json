@@ -1,37 +1,3 @@
 [
-    {
-        "clientName": "7776",
-        "clientPhone": "3434",
-        "cTeacher": "1",
-        "cWeekday": "wednesday",
-        "cTime": "18:00"
-    },
-    {
-        "clientName": "sadasdsad213213",
-        "clientPhone": "2333333",
-        "cTeacher": "1",
-        "cWeekday": "wednesday",
-        "cTime": "18:00"
-    },
-    {
-        "clientName": "ddddddddddddddddddddddddddddddddddd13213",
-        "clientPhone": "2333333",
-        "cTeacher": "1",
-        "cWeekday": "wednesday",
-        "cTime": "18:00"
-    },
-    {
-        "clientName": "henry g",
-        "clientPhone": "99999778888",
-        "cTeacher": "1",
-        "cWeekday": "wednesday",
-        "cTime": "18:00"
-    },
-    {
-        "clientName": "henry g",
-        "clientPhone": "99999778888",
-        "cTeacher": "1",
-        "cWeekday": "wednesday",
-        "cTime": "18:00"
-    }
+
 ]
