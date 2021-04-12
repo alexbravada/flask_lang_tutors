@@ -27,7 +27,16 @@ with open('dayname.json', 'r', encoding='utf-8') as f:
 # main page
 @app.route('/')
 def render_index():
-    return render_template('index.html',)
+    with open('teachers.json', 'r', encoding='utf-8') as f:
+        teachers = json.load(f)
+    random_teachers_list = random.sample(list(teachers), 6)
+    print(type(random_teachers_list))
+    for i in random_teachers_list:
+        print(i, '\n')
+
+    return render_template('index.html',
+                           random_teachers_list=random_teachers_list,
+                           )
 
 
 # show us page with all tutors
