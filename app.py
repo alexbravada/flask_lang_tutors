@@ -45,7 +45,6 @@ def goal_page(goal):
 
 # personal tutor page
 @app.route('/profiles/<int:id_tutor>/')
-#for tutor_dict in
 def tutor_page(id_tutor):
     with open('teachers.json', 'r', encoding='utf-8') as f:
         teachers = json.load(f)
@@ -116,6 +115,7 @@ def booking_done_pg():
 
     print(f'weekday is {cWeekday}\n  time {cTime} \n teacher id is {cTeacher}\n  '
           f'my name is {clientName}\n  tel is {clientPhone}')
+
     return render_template('booking_done.html',
                            dayname=dayname,
                            cWeekday=cWeekday,
