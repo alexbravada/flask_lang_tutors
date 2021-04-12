@@ -73,11 +73,11 @@ def tutor_selection_request():
 def tutor_selection_done():
     goals = request.form['goal']
     week_time = request.form['time']
-    fname = request.form['fname']
-    fphone = request.form['fphone']
+    fname = request.form.get('fname')
+    fphone = request.form.get('fphone')
     print(goals)
     print(week_time)
-    print(type(fname))
+    print(fname)
     print(fphone)
     return render_template('request_done.html',
                            goals=goals,
