@@ -89,13 +89,22 @@ def goal_page(goal):
 def tutor_page(id_tutor):
     # i deleted with open teachers json file from here
     id_teacher_list = [i for i in teachers if i['id'] == id_tutor][0]
+    teacher_goal_list = [goal for goal in id_teacher_list['goals']]
+    ru_teacher_goal_list = []
 
+    for goal, ru_goal in goals_file.items():
+        if goal in teacher_goal_list:
+            ru_teacher_goal_list.append(ru_goal)
+
+    # {% for goal in teacher_goal_list %}{% endfor %} {{ i }}
     return render_template('profile.html',
                            id_tutor=id_tutor,
                            id_teacher_list=id_teacher_list,
                            dayname=dayname,
                            eng_dayname=eng_dayname,
-                           goals_file=goals_file
+                           goals_file=goals_file,
+                           teacher_goal_list=teacher_goal_list,
+                           ru_teacher_goal_list=ru_teacher_goal_list
                            )
 
 
