@@ -94,7 +94,8 @@ def tutor_page(id_tutor):
                            id_tutor=id_tutor,
                            id_teacher_list=id_teacher_list,
                            dayname=dayname,
-                           eng_dayname=eng_dayname
+                           eng_dayname=eng_dayname,
+                           goals_file=goals_file
                            )
 
 
