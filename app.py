@@ -53,12 +53,14 @@ def all_page():
 @app.route('/goals/<goal>/')
 def goal_page(goal):
     teachers_goal_list = [teacher for teacher in teachers if goal in teacher['goals']]
-
+    sorted_by_rating_teachers_goal_list = sorted(teachers_goal_list, key=lambda teachers: teachers['rating'], reverse=True)
+    print(f'rating list {sorted_by_rating_teachers_goal_list}')
     return render_template('goal.html',
                            goal=goal,
                            goals_file=goals_file,
                            teachers=teachers,
-                           teachers_goal_list=teachers_goal_list
+                           teachers_goal_list=teachers_goal_list,
+                           sorted_by_rating_teachers_goal_list=sorted_by_rating_teachers_goal_list,
                            )
 
 
@@ -73,7 +75,8 @@ def tutor_page(id_tutor):
                            id_tutor=id_tutor,
                            id_teacher_list=id_teacher_list,
                            dayname=dayname,
-                           eng_dayname=eng_dayname)
+                           eng_dayname=eng_dayname
+                           )
 
 
 # tutor selection request page
@@ -166,7 +169,8 @@ def booking_done_pg():
                            cTime=cTime,
                            cTeacher=cTeacher,
                            clientName=clientName,
-                           clientPhone=clientPhone)
+                           clientPhone=clientPhone
+                           )
 
 
 if __name__ == "__main__":
