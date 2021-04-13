@@ -17,8 +17,7 @@ app.debug = True
 
 with open('teachers.json', 'r', encoding='utf-8') as f:
     teachers = json.load(f)
-    print(type(teachers))
-    print(teachers)
+
 
 with open('dayname.json', 'r', encoding='utf-8') as f:
     dayname = json.load(f)
@@ -28,12 +27,15 @@ with open('dayname.json', 'r', encoding='utf-8') as f:
 with open('goals.json', 'r', encoding='utf-8') as f:
     goals_file = json.load(f)
 
+print(len(list(teachers)))
+all_random_teachers = random.sample(teachers, len(teachers))
+
 
 # main page
 @app.route('/')
 def render_index():
     # deleted with open teachers json file
-    random_teachers_list = random.sample(list(teachers), 6)
+    random_teachers_list = random.sample(teachers, 6)
     print(type(random_teachers_list))
     for i in random_teachers_list:
         print(i, '\n')
@@ -46,7 +48,14 @@ def render_index():
 # show us page with all tutors
 @app.route('/all/')
 def all_page():
-    return render_template('all.html')
+    teachers_sorted_by_rating = sorted(teachers, key=lambda teacher: teacher['rating'], reverse=True)
+    count_teachers = len(teachers)
+    return render_template('all.html',
+                           teachers=teachers,
+                           count_teachers=count_teachers,
+                           all_random_teachers=all_random_teachers,
+                           teachers_sorted_by_rating=teachers_sorted_by_rating,
+                           )
 
 
 # show us page with tutors, what depends on var /<goal>
@@ -54,7 +63,6 @@ def all_page():
 def goal_page(goal):
     teachers_goal_list = [teacher for teacher in teachers if goal in teacher['goals']]
     sorted_by_rating_teachers_goal_list = sorted(teachers_goal_list, key=lambda teachers: teachers['rating'], reverse=True)
-    print(f'rating list {sorted_by_rating_teachers_goal_list}')
     return render_template('goal.html',
                            goal=goal,
                            goals_file=goals_file,
