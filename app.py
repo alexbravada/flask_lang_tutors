@@ -28,7 +28,7 @@ with open('goals.json', 'r', encoding='utf-8') as f:
     goals_file = json.load(f)
 
 
-emoji = ['⛱', '🏫', '🏢','🚜 🐷']
+emoji = ['⛱', '🏫', '🏢','🚜 🐷', '💻']
 # &#128055;
 all_random_teachers = random.sample(teachers, len(teachers))
 
@@ -66,6 +66,8 @@ def goal_page(goal):
         emoji_item = emoji[2]
     elif goal == 'study':
         emoji_item = emoji[1]
+    elif goal == 'programming':
+        emoji_item = emoji[4]
     else:
         emoji_item = emoji[3]
 

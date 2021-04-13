@@ -746,7 +746,8 @@
         },
         "goals": [
             "relocate",
-            "work"
+            "work",
+            "programming"
         ],
         "id": 8,
         "name": "Skye L.",
@@ -829,7 +830,8 @@
             }
         },
         "goals": [
-            "work"
+            "work",
+            "programming"
         ],
         "id": 9,
         "name": "Seeta Y.",
@@ -914,7 +916,8 @@
         "goals": [
             "travel",
             "study",
-            "work"
+            "work",
+            "programming"
         ],
         "id": 10,
         "name": "Salman S",
@@ -998,7 +1001,8 @@
         },
         "goals": [
             "travel",
-            "work"
+            "work",
+            "programming"
         ],
         "id": 11,
         "name": "Andrew G",
