@@ -27,7 +27,8 @@ with open('dayname.json', 'r', encoding='utf-8') as f:
 with open('goals.json', 'r', encoding='utf-8') as f:
     goals_file = json.load(f)
 
-print(len(list(teachers)))
+emoji = ['⛱', '🏫', '🏢','🚜 🐷']
+# &#128055;
 all_random_teachers = random.sample(teachers, len(teachers))
 
 
@@ -61,6 +62,15 @@ def all_page():
 # show us page with tutors, what depends on var /<goal>
 @app.route('/goals/<goal>/')
 def goal_page(goal):
+    if goal == 'travel':
+        emoji_item = emoji[0]
+    elif goal == 'work':
+        emoji_item = emoji[2]
+    elif goal == 'study':
+        emoji_item = emoji[1]
+    else:
+        emoji_item = emoji[3]
+
     teachers_goal_list = [teacher for teacher in teachers if goal in teacher['goals']]
     sorted_by_rating_teachers_goal_list = sorted(teachers_goal_list, key=lambda teachers: teachers['rating'], reverse=True)
     return render_template('goal.html',
@@ -69,6 +79,8 @@ def goal_page(goal):
                            teachers=teachers,
                            teachers_goal_list=teachers_goal_list,
                            sorted_by_rating_teachers_goal_list=sorted_by_rating_teachers_goal_list,
+                           emoji=emoji,
+                           emoji_item=emoji_item
                            )
 
 

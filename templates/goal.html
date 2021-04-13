@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block container %}
   <main class="container mt-3">
-    <h1 class="h1 text-center w-50 mx-auto mt-1 py-5 mb-4"><strong>🚜&#128055;<br />Преподаватели <br>  {{ goals_file[goal] }}</strong></h1>
+    <h1 class="h1 text-center w-50 mx-auto mt-1 py-5 mb-4"><strong>{{ emoji_item }}<br />Преподаватели <br>  {{ goals_file[goal] }}</strong></h1>
 
       <div class="row">
       <div class="col-12 col-lg-10 offset-lg-1 m-auto">{% for teacher in sorted_by_rating_teachers_goal_list %}
@@ -11,7 +11,7 @@
               <div class="col-3"><img src="{{ teacher['picture'] }}" class="img-fluid" alt=""></div>
               <div class="col-9">
                 <p class="float-right">Рейтинг: {{ teacher['rating'] }} Ставка: {{ teacher['price'] }} / час</p>
-                <h2 class="h4">Morris Simmmons</h2>
+                <h2 class="h4">{{ teacher['name'] }}</h2>
                 <p>{{ teacher['about'] }}</p>
                 <a href="/profiles/{{ teacher['id'] }}" class="btn btn-outline-primary btn-sm mr-3 mb-2">Показать информаци и расписание</a>
 
