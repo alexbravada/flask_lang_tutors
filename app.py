@@ -17,18 +17,22 @@ app.debug = True
 
 with open('teachers.json', 'r', encoding='utf-8') as f:
     teachers = json.load(f)
-
+    print(type(teachers))
+    print(teachers)
 
 with open('dayname.json', 'r', encoding='utf-8') as f:
     dayname = json.load(f)
-    eng_dayname = list(dayname.keys())
+    eng_dayname = list(dayname.keys())  # english dayname version, we can get russian translate from values
+
+
+with open('goals.json', 'r', encoding='utf-8') as f:
+    goals_file = json.load(f)
 
 
 # main page
 @app.route('/')
 def render_index():
-    with open('teachers.json', 'r', encoding='utf-8') as f:
-        teachers = json.load(f)
+    # deleted with open teachers json file
     random_teachers_list = random.sample(list(teachers), 6)
     print(type(random_teachers_list))
     for i in random_teachers_list:
@@ -48,17 +52,22 @@ def all_page():
 # show us page with tutors, what depends on var /<goal>
 @app.route('/goals/<goal>/')
 def goal_page(goal):
+    teachers_goal_list = [teacher for teacher in teachers if goal in teacher['goals']]
+
     return render_template('goal.html',
-                           goal=goal)
+                           goal=goal,
+                           goals_file=goals_file,
+                           teachers=teachers,
+                           teachers_goal_list=teachers_goal_list
+                           )
 
 
 # personal tutor page
 @app.route('/profiles/<int:id_tutor>/')
 def tutor_page(id_tutor):
-    with open('teachers.json', 'r', encoding='utf-8') as f:
-        teachers = json.load(f)
-        id_teacher_list = [i for i in teachers if i['id'] == id_tutor][0]
-        print(id_teacher_list['free'].keys())
+    # i deleted with open teachers json file
+    id_teacher_list = [i for i in teachers if i['id'] == id_tutor][0]
+    print(id_teacher_list['free'].keys())
 
     return render_template('profile.html',
                            id_tutor=id_tutor,
@@ -85,8 +94,7 @@ def tutor_selection_done():
     fname = request.form.get('fname')
     fphone = request.form.get('fphone')
 
-    with open('goals.json', 'r', encoding='utf-8') as f:
-        goals_file = json.load(f)
+    # deleted with open goals json read
 
     dict_from_request = {"clientName": fname,
                          "clientPhone": fphone,
@@ -115,7 +123,7 @@ def tutor_selection_done():
 # contains and handle form of tutor booking
 @app.route('/booking/<int:id_tutor>/<day_name_link>/<booking_time>/', methods=["GET", "POST"])
 def booking_form(id_tutor, day_name_link, booking_time):
-    teacher_name = [i for i in teachers if i['id'] == id_tutor][0]['name']
+    teacher_name = [i for i in teachers if i['id'] == id_tutor][0]
     ru_dayname = dayname[day_name_link]
 
     return render_template('booking.html',
@@ -123,7 +131,8 @@ def booking_form(id_tutor, day_name_link, booking_time):
                            day_name_link=day_name_link,
                            ru_dayname=ru_dayname,
                            teacher_name=teacher_name,
-                           booking_time=booking_time)
+                           booking_time=booking_time,
+                           )
 
 
 # shows us booking done status and writes post-data in JSON file
