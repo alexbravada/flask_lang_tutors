@@ -1,4 +1,4 @@
-import random, pprint
+import random
 
 import json
 
@@ -27,6 +27,7 @@ with open('dayname.json', 'r', encoding='utf-8') as f:
 with open('goals.json', 'r', encoding='utf-8') as f:
     goals_file = json.load(f)
 
+
 emoji = ['⛱', '🏫', '🏢','🚜 🐷']
 # &#128055;
 all_random_teachers = random.sample(teachers, len(teachers))
@@ -37,9 +38,6 @@ all_random_teachers = random.sample(teachers, len(teachers))
 def render_index():
     # deleted with open teachers json file
     random_teachers_list = random.sample(teachers, 6)
-    print(type(random_teachers_list))
-    for i in random_teachers_list:
-        print(i, '\n')
 
     return render_template('index.html',
                            random_teachers_list=random_teachers_list,
@@ -87,9 +85,8 @@ def goal_page(goal):
 # personal tutor page
 @app.route('/profiles/<int:id_tutor>/')
 def tutor_page(id_tutor):
-    # i deleted with open teachers json file
+    # i deleted with open teachers json file from here
     id_teacher_list = [i for i in teachers if i['id'] == id_tutor][0]
-    print(id_teacher_list['free'].keys())
 
     return render_template('profile.html',
                            id_tutor=id_tutor,
@@ -117,8 +114,6 @@ def tutor_selection_done():
     fname = request.form.get('fname')
     fphone = request.form.get('fphone')
 
-    # deleted with open goals json read
-
     dict_from_request = {"clientName": fname,
                          "clientPhone": fphone,
                          "clientGoal": goal,
@@ -128,13 +123,10 @@ def tutor_selection_done():
     with open('request.json', 'r', encoding='utf-8') as f:
         request_list = json.load(f)
         request_list.append(dict_from_request)
+
     with open('request.json', 'w', encoding='utf-8') as f:
         json.dump(request_list, f, indent=4, ensure_ascii=False)
 
-    print(goal)
-    print(week_time)
-    print(fname)
-    print(fphone)
     return render_template('request_done.html',
                            goal=goal,
                            week_time=week_time,
@@ -167,7 +159,6 @@ def booking_done_pg():
     clientName = request.form["clientName"]
     clientPhone = request.form["clientPhone"]
 
-
     dict_from_booking = {"clientName": clientName,
                          "clientPhone": clientPhone,
                          "cTeacher": cTeacher,
@@ -177,11 +168,9 @@ def booking_done_pg():
     with open('booking.json', 'r', encoding='utf-8') as f:
         booking_list = json.load(f)
         booking_list.append(dict_from_booking)
+
     with open('booking.json', 'w', encoding='utf-8') as f:
         json.dump(booking_list, f, indent=4, ensure_ascii=False)
-
-    print(f'weekday is {cWeekday}\n  time {cTime} \n teacher id is {cTeacher}\n  '
-          f'my name is {clientName}\n  tel is {clientPhone}')
 
     return render_template('booking_done.html',
                            dayname=dayname,
