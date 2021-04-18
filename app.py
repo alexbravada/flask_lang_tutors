@@ -28,7 +28,7 @@ with open('goals.json', 'r', encoding='utf-8') as f:
     goals_file = json.load(f)
 
 
-emoji = ['⛱', '🏫', '🏢','🚜 🐷', '💻']
+emoji = ['⛱', '🏫', '🏢', '🚜 🐷', '💻']
 # &#128055;
 all_random_teachers = random.sample(teachers, len(teachers))
 
@@ -72,7 +72,8 @@ def goal_page(goal):
         emoji_item = emoji[3]
 
     teachers_goal_list = [teacher for teacher in teachers if goal in teacher['goals']]
-    sorted_by_rating_teachers_goal_list = sorted(teachers_goal_list, key=lambda teachers: teachers['rating'], reverse=True)
+    sorted_by_rating_teachers_goal_list = sorted(teachers_goal_list, key=lambda teachers: teachers['rating'],
+                                                 reverse=True)
     return render_template('goal.html',
                            goal=goal,
                            goals_file=goals_file,
@@ -196,4 +197,5 @@ def booking_done_pg():
 
 if __name__ == "__main__":
     app.run()
+
 
